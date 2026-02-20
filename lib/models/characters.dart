@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hero_characters/models/skills.dart';
 import 'package:hero_characters/models/stats.dart';
 import 'package:hero_characters/models/vocation.dart';
@@ -45,6 +46,38 @@ class Character with stats {
        'points': points,
      };
    }
+
+   //character from firestore
+   factory Character.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot,SnapshotOptions? options) {
+
+     final data = snapshot.data()!;
+
+     Character character = Character(
+         id: snapshot.id,
+         name: data["name"],
+         slogan: data["slogan"],
+         vocation: Vocation.values.firstWhere((v) => v.toString == data["vocation"] ),
+     );
+
+
+     for (String id in List<String>.from(data["skills"])) {
+       Skill skill = allSkills.firstWhere(
+             (val) => val.id == id,
+       );
+       character.updateSkill(skill);
+     }
+
+     //set isFav
+     if(data["isFav"] == true){
+       character.toggleIsFav();
+     }
+
+     return character;
+
+   }
+
+   //update skill
+
 
 
    bool get fav => _isFav;

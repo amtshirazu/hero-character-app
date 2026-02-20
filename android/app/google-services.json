@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "958483631750",
+    "project_id": "character-game",
+    "storage_bucket": "character-game.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958483631750:android:75f2f353b6eb042bd4cb07",
+        "android_client_info": {
+          "package_name": "com.example.hero_characters"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs8MvNcyvUY6g785i3csJpq4jW9pO3pqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

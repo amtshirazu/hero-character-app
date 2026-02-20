@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"character-game","appId":"1:958483631750:android:75f2f353b6eb042bd4cb07","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"character-game","configurations":{"android":"1:958483631750:android:75f2f353b6eb042bd4cb07","ios":"1:958483631750:ios:b2453eb4bc83f00ed4cb07"}}}}}}

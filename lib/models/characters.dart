@@ -33,6 +33,19 @@ class Character with stats {
      skills.add(skill);
    }
 
+   //character to firestore
+   Map<String,dynamic> toFireStore () {
+     return {
+       'name': name,
+       'slogan': slogan,
+       'isFav': _isFav,
+       'vocation': vocation.toString(),
+       'skills': skills.map((s) => s.id).toList(),
+       'stats': statsAsMap,
+       'points': points,
+     };
+   }
+
 
    bool get fav => _isFav;
 

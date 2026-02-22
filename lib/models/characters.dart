@@ -56,13 +56,15 @@ class Character with stats {
          id: snapshot.id,
          name: data["name"],
          slogan: data["slogan"],
-         vocation: Vocation.values.firstWhere((v) => v.toString == data["vocation"] ),
+         vocation: Vocation.values.firstWhere((v) => v.toString() == data["vocation"] ),
      );
 
 
+     //update skill
      for (String id in List<String>.from(data["skills"])) {
        Skill skill = allSkills.firstWhere(
-             (val) => val.id == id,
+          (val) => val.id == id,
+         orElse: () => throw Exception("Skill not found: $id"),
        );
        character.updateSkill(skill);
      }
@@ -72,12 +74,10 @@ class Character with stats {
        character.toggleIsFav();
      }
 
+     character.setStats(points: data["points"], stats: data["stats"]);
+
      return character;
-
    }
-
-   //update skill
-
 
 
    bool get fav => _isFav;

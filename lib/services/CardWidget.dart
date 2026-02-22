@@ -20,9 +20,12 @@ class CardWidget extends StatelessWidget {
         child: Row(
           children: [
 
-            Image.asset(
-              "lib/assets/img/vocations/${character.vocation.image}",
-              width: 80,
+            Hero(
+              tag: character.id.toString(),
+              child: Image.asset(
+                "lib/assets/img/vocations/${character.vocation.image}",
+                width: 80,
+              ),
             ),
 
             SizedBox(width: 25,),

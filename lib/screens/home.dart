@@ -17,6 +17,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   @override
+  void initState() {
+
+    Provider.of<CharacterStore>(context, listen: false)
+     .fetchAllCharacters();
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -29,13 +38,27 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
 
-            
+
             Expanded(
-              child: ListView.builder(
-                itemCount: Provider.of<CharacterStore>(context).characters.length,
-                itemBuilder: (context,index) {
-                  return CardWidget(Provider.of<CharacterStore>(context).characters[index]);
-                }
+              child: Consumer<CharacterStore>(
+                builder: (context, store, child) {
+                  final characters = store.characters;
+
+                  return ListView.builder(
+                    itemCount: characters.length,
+                    itemBuilder: (context, index) {
+                      final character = characters[index];
+
+                      return Dismissible(
+                        key: ValueKey(character.id),
+                        onDismissed: (direction) {
+                          store.deleteCharacter(character);
+                        },
+                        child: CardWidget(character),
+                      );
+                    },
+                  );
+                },
               ),
             ),
             
